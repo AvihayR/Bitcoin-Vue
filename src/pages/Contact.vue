@@ -1,11 +1,34 @@
 <template>
-    <div>
-
-    </div>
+    <main class="contact-page">
+        <img v-if="!contacts.length" src="../assets/img/puff.svg" alt="" srcset="">
+        <h1>Contacts</h1>
+        <ContactFilter />
+        <ContactList :contacts="contacts" />
+    </main>
 </template>
 <script>
+import ContactFilter from '../cmps/ContactFilter.vue'
+import ContactList from '../cmps/ContactList.vue'
+import ContactPreview from '../cmps/ContactPreview.vue'
+import { contactService } from '../services/contactService'
+
 export default {
+    data() {
+        return {
+            contacts: [],
+        }
+    },
+    components: { ContactFilter, ContactList, ContactPreview },
+    methods: {},
+    computed: {},
+    async created() {
+        this.contacts = await contactService.getContacts()
+    }
 
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.contact-page {
+    margin-inline: 1rem;
+}
+</style>

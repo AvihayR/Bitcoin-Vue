@@ -3,6 +3,7 @@
         <nav class="nav-container">
             <router-link to="/">Home</router-link>
             <router-link to="/about">About</router-link>
+            <router-link to="/contact">Contacts</router-link>
         </nav>
         <div v-if="user" class="user-container">
             Logged as {{ user }}.
