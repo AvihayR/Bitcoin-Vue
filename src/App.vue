@@ -18,7 +18,14 @@ export default {
 </script>
 
 <style>
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 main {
-  min-height: 89vh;
+  min-height: 90vh;
 }
 </style>

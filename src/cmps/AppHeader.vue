@@ -1,8 +1,5 @@
 <template>
     <header>
-        <div class="rate-container">
-            <small>Bitcoin/USD rate: {{ exchangeRate }}</small>
-        </div>
         <nav class="nav-container">
             <router-link to="/">Home</router-link>
             <router-link to="/about">About</router-link>
@@ -15,20 +12,39 @@
 <script>
 import { RouterLink } from 'vue-router'
 import { userService } from '../services/userService'
-import { bitcoinService } from '../services/bitcoinService'
 
 export default {
     data() {
         return {
             user: null,
-            exchangeRate: null
         }
     },
     async created() {
         this.user = userService.getUser().name
-        this.exchangeRate = await bitcoinService.getRate()
     }
 
 }
 </script>
-<style></style>
+<style lang="scss">
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 1rem;
+
+    .nav-container {
+        display: flex;
+        gap: 0.8rem;
+        font-size: 1.5rem;
+
+        a {
+            text-decoration: none;
+            color: unset;
+
+            &.router-link-active {
+                text-decoration: underline;
+                filter: brightness(2.75);
+            }
+        }
+    }
+}
+</style>
