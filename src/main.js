@@ -5,9 +5,9 @@ import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faArrowRight, faPerson, faMobileScreen, faAt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faPerson, faMobileScreen, faAt, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faArrowRight, faPerson, faMobileScreen, faAt)
+library.add(faArrowRight, faPerson, faMobileScreen, faAt, faMagnifyingGlass)
 
 
 const app = createApp(App)

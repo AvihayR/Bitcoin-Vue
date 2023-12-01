@@ -1,8 +1,7 @@
 <template>
     <main class="contact-page">
         <img v-if="!contacts.length" src="../assets/img/puff.svg" alt="" srcset="">
-        <h1>Contacts</h1>
-        <ContactFilter />
+        <ContactFilter v-on:search="onFilterBy" />
         <ContactList :contacts="contacts" />
     </main>
 </template>
@@ -19,7 +18,11 @@ export default {
         }
     },
     components: { ContactFilter, ContactList, ContactPreview },
-    methods: {},
+    methods: {
+        async onFilterBy(filterBy) {
+            this.contacts = await contactService.getContacts({ term: filterBy })
+        }
+    },
     computed: {},
     async created() {
         this.contacts = await contactService.getContacts()

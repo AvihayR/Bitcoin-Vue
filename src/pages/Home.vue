@@ -5,7 +5,7 @@
       <filter id="dropshadow" height="130%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
         <feOffset dx="0" dy="0" result="offsetblur" />
-        <feFlood flood-color="red" />
+        <feFlood flood-color="#41B883" />
         <feComposite in2="offsetblur" operator="in" />
         <feMerge>
           <feMergeNode />
@@ -76,30 +76,30 @@ export default {
   stroke-linecap: round;
   animation: dash 6s linear infinite;
   fill-opacity: 0;
-  stroke: orange;
+  stroke: #41B883;
 }
 
 @keyframes dash {
   0% {
     stroke-dashoffset: 2110;
     opacity: 0;
-    stroke: orange;
+    stroke: #41B883;
   }
 
   15% {
     opacity: 1;
-    stroke: orange;
+    stroke: #41B883;
   }
 
   70% {
     opacity: 1;
-    stroke: orange;
+    stroke: #41B883;
   }
 
   100% {
     stroke-dashoffset: 0;
     opacity: 0;
-    stroke: yellow;
+    stroke: #ceffe9;
   }
 }
 
@@ -124,4 +124,5 @@ main {
       font-size: 0.85rem;
     }
   }
-}</style>
+}
+</style>
