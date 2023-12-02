@@ -50,7 +50,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3rem;
+    gap: 3.5rem;
     margin-inline: 1rem;
 
     h1 {

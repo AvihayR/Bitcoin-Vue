@@ -79,5 +79,9 @@ export default {
 .chart-container {
     height: 450px;
     margin-inline: 1rem;
+
+    @media (max-width: 550px) {
+        margin-inline: unset;
+    }
 }
 </style>

@@ -32,6 +32,7 @@ export default {
 </script>
 <style lang="scss">
 .contact-page {
+    margin-block-start: 3rem;
     margin-inline: 1rem;
 }
 </style>

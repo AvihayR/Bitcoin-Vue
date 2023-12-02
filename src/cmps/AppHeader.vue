@@ -37,6 +37,7 @@ header {
         gap: 0.8rem;
         font-size: 1.5rem;
 
+
         a {
             text-decoration: none;
             color: unset;
@@ -45,6 +46,12 @@ header {
                 text-decoration: underline;
                 color: #41B883;
             }
+        }
+    }
+
+    @media (max-width: 550px) {
+        .nav-container {
+            font-size: 1rem;
         }
     }
 }
