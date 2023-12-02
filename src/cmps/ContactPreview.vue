@@ -1,26 +1,38 @@
 <template>
-    <div class="contact-card">
-        <div class="icons-container">
-            <h3><font-awesome-icon icon="fa-solid fa-person" /></h3>
-            <h4><font-awesome-icon icon="fa-solid fa-mobile-screen" /></h4>
-            <h5><font-awesome-icon icon="fa-solid fa-at" /></h5>
-        </div>
-        <hr>
-        <div class="details-container">
-            <h3>{{ contact.name }}</h3>
-            <h4>{{ contact.phone }}</h4>
-            <h5> {{ contact.email }}</h5>
-        </div>
+    <router-link v-bind:to="getContactUrl">
+        <div class="contact-card">
+            <div class="icons-container">
+                <h3><font-awesome-icon class="vue-color" icon="fa-solid fa-person" /></h3>
+                <h4><font-awesome-icon class="vue-color" icon="fa-solid fa-mobile-screen" /></h4>
+                <h5><font-awesome-icon class="vue-color" icon="fa-solid fa-at" /></h5>
+            </div>
+            <hr>
+            <div class="details-container">
+                <h3 class="name">{{ contact.name }}</h3>
+                <h4 class="phone">{{ contact.phone }}</h4>
+                <h5 class="email"> {{ contact.email }}</h5>
+            </div>
 
-        <font-awesome-icon class="arrow" icon="fa-solid fa-arrow-right" />
-    </div>
+            <font-awesome-icon class="arrow" icon="fa-solid fa-arrow-right" />
+        </div>
+    </router-link>
 </template>
 <script>
 export default {
     props: ['contact'],
+    computed: {
+        getContactUrl() {
+            return '/contact/' + this.contact._id
+        }
+    }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+a {
+    all: unset;
+    display: block;
+}
+
 .contact-card {
     display: flex;
     gap: 1rem;
@@ -29,6 +41,12 @@ export default {
     border-radius: 1rem;
     margin-bottom: .5rem;
     cursor: pointer;
+
+    hr {
+        all: unset;
+        border-right: 2px solid;
+        border-color: #282828;
+    }
 
     &:hover {
 

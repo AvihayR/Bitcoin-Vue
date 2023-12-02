@@ -1,7 +1,7 @@
 <template>
     <footer>
         <small>
-            This is my first Vue app, if you want to check out more of my creations -
+            This is my first app using VueJS, Want to see more? -
             <a href="">Click me!</a>
         </small>
     </footer>

@@ -43,7 +43,7 @@ header {
 
             &.router-link-active {
                 text-decoration: underline;
-                filter: brightness(2.75);
+                color: #41B883;
             }
         }
     }
