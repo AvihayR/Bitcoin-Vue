@@ -16,13 +16,15 @@
                 Email
                 <input v-model="contact.email" type="email" id="email-input" required>
             </label>
-            <button @click="onSaveContact" type="submit" class="save btn">
-                <font-awesome-icon icon="icon fa-solid fa-floppy-disk" />
-            </button>
+            <div class="btn-container">
+                <button v-if="contactId" @click="onRemoveContact" class="icon remove btn" title="Delete contact">
+                    <font-awesome-icon icon="fa-solid fa-trash" />
+                </button>
+                <button @click="onSaveContact" type="submit" class="save btn" title="Save contact">
+                    <font-awesome-icon icon="icon fa-solid fa-floppy-disk" />
+                </button>
+            </div>
         </form>
-        <button v-if="contactId" @click="onRemoveContact" class="icon remove btn">
-            <font-awesome-icon icon="fa-solid fa-trash" />
-        </button>
 
     </div>
 </template>
@@ -47,7 +49,8 @@ export default {
         async onSaveContact() {
             try {
                 await contactService.saveContact(this.contact)
-                this.$router.push('/contact')
+                this.$router.push(`/contact/${this.contact._id}`)
+
             } catch (err) {
                 console.log('Could not save contact at this time.')
             }
@@ -94,6 +97,11 @@ export default {
                 border-radius: 0.5rem;
                 color: #41B883;
             }
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
         }
     }
 }
