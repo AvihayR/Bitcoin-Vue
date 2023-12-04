@@ -3,7 +3,9 @@
         <img v-if="!contact" class="loader" src="../assets/img/puff.svg" alt="Loading..">
         <div v-else class="contact-details">
             <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
-            <img v-bind:src="contactImg" @error="defaultImg" alt="Contact's image" title="Contact's image" />
+            <img v-bind:src="getLoadingImg()" alt="Loading.." ref="loading" />
+            <img v-bind:src="contactImg" @error="defaultImg" @load="onLoadImg" alt="Contact's image"
+                title="Contact's image" />
             <div class="more-details">
                 <div class="icons-container">
                     <h4 title="Contact's phone number">
@@ -37,12 +39,18 @@ import { contactService } from '../services/contactService'
 export default {
     data() {
         return {
-            contact: null
+            contact: null,
         }
     },
     methods: {
         defaultImg(e) {
             e.target.src = loadingSvg
+        },
+        onLoadImg(e) {
+            console.log(this.$refs.loading.classList.add('hidden'))
+        },
+        getLoadingImg() {
+            return loadingSvg
         }
     },
     computed: {
@@ -57,7 +65,7 @@ export default {
         },
         editUrl() {
             return `/contact/edit/${this.contact._id}`
-        }
+        },
     },
     async created() {
         this.contact = await contactService.getContactById(this.contactId)
@@ -107,6 +115,10 @@ export default {
 
     .loader {
         width: 100px;
+    }
+
+    .hidden {
+        display: none;
     }
 }
 </style>
