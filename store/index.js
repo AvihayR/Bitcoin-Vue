@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import contact from './modules/contact.module.js'
 
 // Create a new store instance.
 const storeOptions = {
@@ -25,7 +26,7 @@ const storeOptions = {
         count(state) { return state.count }
     },
     modules: {
-        // car,
+        contact
     }
 }
 const store = createStore(storeOptions)

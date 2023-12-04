@@ -21,12 +21,27 @@ export default {
     components: { ContactFilter, ContactList, ContactPreview },
     methods: {
         async onFilterBy(filterBy) {
-            this.contacts = await contactService.getContacts({ term: filterBy })
+            // this.contacts = await contactService.getContacts({ term: filterBy })
+            this.$store.dispatch({ type: 'setFilterBy', filterBy })
         }
     },
-    computed: {},
+    computed: {
+        contacts() {
+            return this.$store.getters.contacts
+        },
+        filteredCars() {
+            const regex = new RegExp(this.filterBy.txt, 'i')
+            return this.contacts.filter(car => regex.test(car.vendor))
+        }
+    },
     async created() {
-        this.contacts = await contactService.getContacts()
+        // this.contacts = await contactService.getContacts()
+        try {
+            this.$store.dispatch({ type: 'loadContacts' })
+        } catch (err) {
+            console.log('Could not load contacts')
+        }
+
     }
 
 }
