@@ -1,9 +1,8 @@
 <template>
     <footer>
         <small>
-            This is my first app using VueJS, Want to see more? -
-            <a href="">Click me!</a>
-            <span class="vue-color">{{ count }}</span>
+            This App was created using VueJS - Want to see more? -
+            <a href="https://github.com/AvihayR" class="vue-color">Click me!</a>
         </small>
     </footer>
 </template>
@@ -14,7 +13,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
 footer {
     margin-inline: 1rem;
     display: flex;
