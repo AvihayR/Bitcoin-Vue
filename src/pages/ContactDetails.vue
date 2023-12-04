@@ -3,7 +3,7 @@
         <img v-if="!contact" class="loader" src="../assets/img/puff.svg" alt="Loading..">
         <div v-else class="contact-details">
             <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
-            <img v-bind:src="getLoadingImg()" alt="Loading.." ref="loading" />
+            <img v-bind:src="getLoadingImg()" class="loading-img" alt="Loading.." ref="loading" />
             <img v-bind:src="contactImg" @error="defaultImg" @load="onLoadImg" alt="Contact's image"
                 title="Contact's image" />
             <div class="more-details">
@@ -47,7 +47,7 @@ export default {
             e.target.src = loadingSvg
         },
         onLoadImg(e) {
-            console.log(this.$refs.loading.classList.add('hidden'))
+            this.$refs.loading.classList.add('hidden')
         },
         getLoadingImg() {
             return loadingSvg
@@ -79,6 +79,12 @@ export default {
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
+
+    .loading-img {
+        margin-inline: 2rem;
+        width: 5rem;
+        height: 5rem;
+    }
 
     .arrow {
         font-size: 2rem;

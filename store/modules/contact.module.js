@@ -10,17 +10,17 @@ export default {
         setContacts(state, { contacts }) {
             state.contacts = contacts
         },
-        // removeCar(state, { carId }) {
-        //     const idx = state.cars.findIndex(car => car._id === carId)
-        //     state.cars.splice(idx, 1)
+        // removeContact(state, { contactId }) {
+        //     const idx = state.contacts.findIndex(contact => contact._id === contactId)
+        //     state.contacts.splice(idx, 1)
         // },
-        // updateCar(state, { savedCar }) {
-        //     console.log(savedCar)
-        //     const idx = state.cars.findIndex(car => car._id === savedCar._id)
-        //     state.cars.splice(idx, 1, savedCar)
+        // updateContact(state, { savedContact }) {
+        //     console.log(savedContact)
+        //     const idx = state.contacts.findIndex(contact => contact._id === savedContact._id)
+        //     state.contacts.splice(idx, 1, savedContacts)
         // },
-        // saveCar(state, { savedCar }) {
-        //     state.cars.push(savedCar)
+        // saveContact(state, { savedContact }) {
+        //     state.contacts.push(savedContact)
         // },
     },
     actions: {
@@ -42,25 +42,25 @@ export default {
                 throw err
             }
         },
-        // async removeCar(context, { carId }) {
+        // async removeContact(context, { contactId }) {
         //     try {
-        //         await carService.remove(carId)
-        //         context.commit({ type: 'removeCar', carId })
+        //         await contactService.remove(contactId)
+        //         context.commit({ type: 'removeContact', contactId })
         //     } catch (err) {
         //         console.log(err)
         //         throw err
         //     }
         // },
-        // async saveCar(context, { car }) {
-        //     const isUpdate = !!car._id
+        // async saveContact(context, { contact }) {
+        //     const isUpdate = !!contact._id
 
         //     try {
-        //         const savedCar = await carService.save(car)
+        //         const savedContact = await contactService.save(contact)
 
         //         if (isUpdate) {
-        //             context.commit({ type: 'updateCar', savedCar })
+        //             context.commit({ type: 'updateContact', savedContact })
         //         } else {
-        //             context.commit({ type: 'saveCar', savedCar })
+        //             context.commit({ type: 'saveContact', savedContact })
         //         }
         //     } catch (err) {
         //         console.log(err)

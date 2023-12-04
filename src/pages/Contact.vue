@@ -29,13 +29,8 @@ export default {
         contacts() {
             return this.$store.getters.contacts
         },
-        filteredCars() {
-            const regex = new RegExp(this.filterBy.txt, 'i')
-            return this.contacts.filter(car => regex.test(car.vendor))
-        }
     },
     async created() {
-        // this.contacts = await contactService.getContacts()
         try {
             this.$store.dispatch({ type: 'loadContacts' })
         } catch (err) {

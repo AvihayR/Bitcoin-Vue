@@ -17,7 +17,8 @@
                 <input v-model="contact.email" type="email" id="email-input" required>
             </label>
             <div class="btn-container">
-                <button v-if="contactId" @click="onRemoveContact" class="icon remove btn" title="Delete contact">
+                <button v-if="contactId" @click="onRemoveContact" type="button" class="icon remove btn"
+                    title="Delete contact">
                     <font-awesome-icon icon="fa-solid fa-trash" />
                 </button>
                 <button @click="onSaveContact" type="submit" class="save btn" title="Save contact">
