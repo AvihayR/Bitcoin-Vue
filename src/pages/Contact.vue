@@ -2,6 +2,7 @@
     <main class="contact-page">
         <img v-if="!contacts.length" src="../assets/img/puff.svg" alt="" srcset="">
         <ContactFilter v-on:search="onFilterBy" />
+        <router-link class="btn add" to="/contact/edit">Add a new contact</router-link>
         <ContactList :contacts="contacts" />
     </main>
 </template>
@@ -30,9 +31,16 @@ export default {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .contact-page {
     margin-block-start: 3rem;
     margin-inline: 1rem;
+
+    .btn {
+        &.add {
+            display: flex;
+            justify-content: center;
+        }
+    }
 }
 </style>

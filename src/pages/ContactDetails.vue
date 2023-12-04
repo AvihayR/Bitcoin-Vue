@@ -3,7 +3,7 @@
         <img v-if="!contact" class="loader" src="../assets/img/puff.svg" alt="Loading..">
         <div v-else class="contact-details">
             <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
-            <img v-bind:src="contactImg" alt="Contact's image" title="Contact's image" />
+            <img v-bind:src="contactImg" @error="defaultImg" alt="Contact's image" title="Contact's image" />
             <div class="more-details">
                 <div class="icons-container">
                     <h4 title="Contact's phone number">
@@ -19,6 +19,10 @@
                         {{ contact._id }}
                     </small>
                 </div>
+                <router-link :to="editUrl" class="btn" title="Edit contact">
+                    <font-awesome-icon icon="icon fa-solid fa-pen" />
+                </router-link>
+
             </div>
         </div>
         <router-link to="/contact">
@@ -27,6 +31,7 @@
     </main>
 </template>
 <script>
+import loadingSvg from "../assets/img/puff.svg"
 import { contactService } from '../services/contactService'
 
 export default {
@@ -35,8 +40,10 @@ export default {
             contact: null
         }
     },
-    async created() {
-        this.contact = await contactService.getContactById(this.contactId)
+    methods: {
+        defaultImg(e) {
+            e.target.src = loadingSvg
+        }
     },
     computed: {
         contactId() {
@@ -47,8 +54,14 @@ export default {
         },
         contactImg() {
             return `https://robohash.org/${this.contactName}?set=set5`
+        },
+        editUrl() {
+            return `/contact/edit/${this.contact._id}`
         }
-    }
+    },
+    async created() {
+        this.contact = await contactService.getContactById(this.contactId)
+    },
 }
 </script>
 <style lang="scss">
@@ -76,6 +89,8 @@ export default {
 
     .more-details {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
 
         .icons-container {

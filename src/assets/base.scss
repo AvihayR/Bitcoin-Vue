@@ -73,4 +73,12 @@ body {
   .vue-color {
     color: #41B883;
   }
+
+  .btn {
+    all: unset;
+    cursor: pointer;
+    margin: .5rem;
+    font-size: 1.5rem;
+    color: #41B883;
+  }
 }

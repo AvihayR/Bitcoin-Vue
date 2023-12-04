@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import Contact from '../pages/Contact.vue'
 import ContactDetails from '../pages/ContactDetails.vue'
+import ContactEdit from '../pages/ContactEdit.vue'
 import Stats from '../pages/Stats.vue'
 
 const router = createRouter({
@@ -19,8 +20,13 @@ const router = createRouter({
     },
     {
       path: '/contact/:_id',
-      name: 'contact details',
+      name: 'Contact Details',
       component: ContactDetails
+    },
+    {
+      path: '/contact/edit/:_id?',
+      name: 'Contact Edit',
+      component: ContactEdit
     },
     {
       path: '/stats',
