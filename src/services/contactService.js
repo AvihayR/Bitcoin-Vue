@@ -129,8 +129,9 @@ async function getContacts(filterBy = null) {
     let contactsToReturn = contacts
 
     if (filterBy && filterBy.term) {
-        contactsToReturn = filter(filterBy.term)
+        contactsToReturn = filter(contacts, filterBy.term)
     }
+
     return contactsToReturn
 }
 
@@ -161,7 +162,7 @@ function getEmptyContact() {
     }
 }
 
-function filter(term) {
+function filter(contacts, term) {
     term = term.toLocaleLowerCase()
     return contacts.filter(contact => {
         return contact.name.toLocaleLowerCase().includes(term) ||

@@ -1,8 +1,8 @@
 <template>
     <form class="filter-container" v-on:submit.prevent="onSearch">
-        <input v-on:input="onSearch" v-model="searchBy" type="text" id="search-input">
+        <input v-on:input="onSearch" v-model="searchBy" type="text" title="Search a contact" id="search-input">
         <label for="search-input">
-            <font-awesome-icon class="search-btn" icon="fa-solid fa-magnifying-glass" />
+            <font-awesome-icon class="search-btn" title="Search a contact" icon="fa-solid fa-magnifying-glass" />
         </label>
     </form>
 </template>
