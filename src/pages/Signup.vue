@@ -25,6 +25,8 @@ export default {
         async onLogin() {
             try {
                 await userService.login(this.username)
+                this.$store.dispatch({ type: 'loadLoggedUser' })
+                this.$router.push('/')
             } catch (err) {
                 console.log('Could not login at this time.')
             }

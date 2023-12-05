@@ -17,12 +17,17 @@ import { userService } from '../services/userService'
 export default {
     data() {
         return {
-            user: null,
         }
     },
     async created() {
-        this.user = await userService.getUser()
-    }
+        // this.user = await userService.getUser()
+        this.$store.dispatch({ type: 'loadLoggedUser' })
+    },
+    computed: {
+        user() {
+            return this.$store.getters.loggedUser
+        },
+    },
 
 }
 </script>
