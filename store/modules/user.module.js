@@ -25,6 +25,18 @@ export default {
                 throw err
             }
         },
+        async transferFunds(context, { contactId, amount }) {
+            const user = await userService.transferFunds(contactId, amount)
+            const transactions = await userService.getTransactions()
+
+            context.commit({ type: 'setUser', user: { ...user, transactions: transactions } })
+            try {
+                // userService.transferFunds()
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        },
         async logOut(context) {
             try {
                 const res = await userService.logout()
@@ -36,6 +48,7 @@ export default {
         }
     },
     getters: {
-        loggedUser(state) { return state.loggedUser }
+        loggedUser(state) { return state.loggedUser },
+        transactions(state) { return state.loggedUser.transactions }
     },
 }

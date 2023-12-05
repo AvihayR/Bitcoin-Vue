@@ -2,7 +2,10 @@
     <main class="contact-details-page">
         <img v-if="!contact" class="loader" src="../assets/img/puff.svg" alt="Loading..">
         <div v-else class="contact-details">
-            <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
+            <div class="name-container">
+                <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
+                <button @click="showModal" class="btn transfer">Transfer Bitcoins💸</button>
+            </div>
             <img v-bind:src="getLoadingImg()" class="loading-img" alt="Loading.." ref="loading" />
             <img v-bind:src="contactImg" @error="defaultImg" @load="onLoadImg" alt="Contact's image"
                 title="Contact's image" />
@@ -31,16 +34,38 @@
             <font-awesome-icon class="arrow vue-color" title="Go back to contacts page" icon="fa-solid fa-arrow-left" />
         </router-link>
     </main>
+
+    <Modal v-show="isModalVisible" @close="closeModal">
+        <template v-slot:header>
+            Transfer ₿
+        </template>
+
+        <template v-slot:body>
+            <form v-on:submit.prevent="onTransferFunds">
+                <label for="amount">
+                    <input v-model="amountToTransfer" v-bind:max="currFunds" type="number" required>
+                </label>
+                <button class="vue-color btn-send">Transfer</button>
+            </form>
+        </template>
+    </Modal>
 </template>
 <script>
 import loadingSvg from "../assets/img/puff.svg"
+import Modal from "../cmps/Modal.vue"
 import { contactService } from '../services/contactService'
+import { userService } from "../services/userService"
 
 export default {
     data() {
         return {
             contact: null,
+            isModalVisible: false,
+            amountToTransfer: 0
         }
+    },
+    components: {
+        Modal
     },
     methods: {
         defaultImg(e) {
@@ -51,6 +76,22 @@ export default {
         },
         getLoadingImg() {
             return loadingSvg
+        },
+        showModal() {
+            this.isModalVisible = true;
+        },
+        closeModal() {
+            this.isModalVisible = false;
+        },
+        async onTransferFunds() {
+            try {
+                this.$store.dispatch({ type: 'transferFunds', contactId: this.contactId, amount: this.amountToTransfer })
+                // await userService.transferFunds(this.contactId, this.amountToTransfer)
+            } catch (err) {
+                console.log(err)
+            } finally {
+                this.closeModal()
+            }
         }
     },
     computed: {
@@ -59,6 +100,12 @@ export default {
         },
         contactName() {
             return this.contact?.name
+        },
+        currFunds() {
+            return this.$store.getters.loggedUser?.balance
+        },
+        transactions() {
+            return this.$store.getters.transactions.filter(transaction => transaction.toId === this.contactId)
         },
         contactImg() {
             return `https://robohash.org/${this.contactName}?set=set5`

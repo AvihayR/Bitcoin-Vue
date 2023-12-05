@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import { userService } from '../services/userService';
+import { userService } from '../services/userService'
 
 export default {
     data() {
@@ -25,10 +25,10 @@ export default {
         async onLogin() {
             try {
                 await userService.login(this.username)
-                this.$store.dispatch({ type: 'loadLoggedUser' })
+                await this.$store.dispatch({ type: 'loadLoggedUser' })
                 this.$router.push('/')
             } catch (err) {
-                console.log('Could not login at this time.')
+                console.log(err)
             }
 
         }
