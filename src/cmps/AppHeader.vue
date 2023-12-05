@@ -44,6 +44,18 @@ header {
     justify-content: space-between;
     margin-inline: 1rem;
 
+    .user-container {
+        display: grid;
+        justify-items: end;
+        color: #41B883;
+
+        .logout {
+            cursor: pointer;
+            color: gray;
+            font-weight: 700;
+        }
+    }
+
     .nav-container {
         display: flex;
         gap: 0.8rem;

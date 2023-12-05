@@ -4,8 +4,14 @@
         <div v-else class="contact-details">
             <div class="name-container">
                 <h1 class="person-name" title="Contact's name">{{ contactName }}</h1>
-                <button @click="showModal" class="btn transfer">Transfer Bitcoins💸</button>
+                <button v-bind:disabled="currFunds <= 0" @click="showModal" class="btn transfer">Transfer
+                    Bitcoins💸</button>
+                <router-link to="/contact">
+                    <font-awesome-icon class="arrow vue-color" title="Go back to contacts page"
+                        icon="fa-solid fa-arrow-left" />
+                </router-link>
             </div>
+
             <img v-bind:src="getLoadingImg()" class="loading-img" alt="Loading.." ref="loading" />
             <img v-bind:src="contactImg" @error="defaultImg" @load="onLoadImg" alt="Contact's image"
                 title="Contact's image" />
@@ -30,9 +36,6 @@
 
             </div>
         </div>
-        <router-link to="/contact">
-            <font-awesome-icon class="arrow vue-color" title="Go back to contacts page" icon="fa-solid fa-arrow-left" />
-        </router-link>
     </main>
 
     <Modal v-show="isModalVisible" @close="closeModal">
@@ -47,6 +50,7 @@
                 </label>
                 <button class="vue-color btn-send">Transfer</button>
             </form>
+            <h2 class="balance">Your current balance: {{ currFunds }}<span class="vue-color">₿</span> </h2>
         </template>
     </Modal>
 </template>
@@ -136,6 +140,33 @@ export default {
     .arrow {
         font-size: 2rem;
     }
+
+
+    .name-container {
+        display: grid;
+        place-items: center;
+
+        .btn {
+            &.transfer {
+
+                color: gray;
+                border: 1px solid gray;
+                padding: .5rem;
+                border-radius: .5rem;
+
+                &:hover {
+                    background-color: black;
+                    color: #41B883;
+                    border-color: #41B883;
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
 
     .contact-details {
         display: flex;

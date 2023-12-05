@@ -116,6 +116,10 @@ export default {
     }
 }
 
+.balance {
+    margin-block: 1rem;
+}
+
 .modal-fade-enter,
 .modal-fade-leave-to {
     opacity: 0;
