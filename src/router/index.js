@@ -4,6 +4,7 @@ import Contact from '../pages/Contact.vue'
 import ContactDetails from '../pages/ContactDetails.vue'
 import ContactEdit from '../pages/ContactEdit.vue'
 import Stats from '../pages/Stats.vue'
+import Signup from '../pages/Signup.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/stats',
       name: 'stats',
       component: Stats
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
     }
   ]
 })

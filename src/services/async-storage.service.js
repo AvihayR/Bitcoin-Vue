@@ -4,7 +4,8 @@ export const storageService = {
     post,
     put,
     remove,
-    insertMany
+    insertMany,
+    save
 }
 
 function query(entityType, delay = 500) {
@@ -26,7 +27,7 @@ function post(entityType, newEntity) {
     console.log(newEntity)
     return query(entityType).then(entities => {
         entities.unshift(newEntity)
-        _save(entityType, entities)
+        save(entityType, entities)
         return newEntity
     })
 }
@@ -37,7 +38,7 @@ function put(entityType, updatedEntity) {
         const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`)
         entities.splice(idx, 1, updatedEntity)
-        _save(entityType, entities)
+        save(entityType, entities)
         return updatedEntity
     })
 }
@@ -47,18 +48,18 @@ function remove(entityType, entityId) {
         const idx = entities.findIndex(entity => entity._id === entityId)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         entities.splice(idx, 1)
-        _save(entityType, entities)
+        save(entityType, entities)
     })
 }
 
 function insertMany(entityType, entities) {
     entities.forEach(entity => entity._id = _makeId())
-    _save(entityType, entities)
+    save(entityType, entities)
 }
 
 // Private functions
 
-function _save(entityType, entities) {
+function save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 

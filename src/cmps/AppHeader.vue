@@ -6,7 +6,7 @@
             <router-link to="/stats">Statistics</router-link>
         </nav>
         <div v-if="user" class="user-container">
-            Logged as {{ user }}.
+            Logged as {{ user.name }}.
         </div>
     </header>
 </template>
@@ -21,7 +21,7 @@ export default {
         }
     },
     async created() {
-        this.user = userService.getUser().name
+        this.user = await userService.getUser()
     }
 
 }
