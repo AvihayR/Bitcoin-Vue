@@ -36,6 +36,8 @@
 
             </div>
         </div>
+        <TransactionList v-if="transactions?.length" v-bind:transactions="transactions" />
+        <h2 v-else>No transactions was made to this user yet 😉</h2>
     </main>
 
     <Modal v-show="isModalVisible" @close="closeModal">
@@ -57,6 +59,7 @@
 <script>
 import loadingSvg from "../assets/img/puff.svg"
 import Modal from "../cmps/Modal.vue"
+import TransactionList from "../cmps/TransactionList.vue"
 import { contactService } from '../services/contactService'
 import { userService } from "../services/userService"
 
@@ -69,7 +72,8 @@ export default {
         }
     },
     components: {
-        Modal
+        Modal,
+        TransactionList
     },
     methods: {
         defaultImg(e) {
@@ -109,7 +113,7 @@ export default {
             return this.$store.getters.loggedUser?.balance
         },
         transactions() {
-            return this.$store.getters.transactions.filter(transaction => transaction.toId === this.contactId)
+            return this.$store.getters.transactions?.filter(transaction => transaction.toId === this.contactId)
         },
         contactImg() {
             return `https://robohash.org/${this.contactName}?set=set5`

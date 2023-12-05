@@ -49,6 +49,6 @@ export default {
     },
     getters: {
         loggedUser(state) { return state.loggedUser },
-        transactions(state) { return state.loggedUser.transactions }
+        transactions(state) { return state.loggedUser?.transactions }
     },
 }
