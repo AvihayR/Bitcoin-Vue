@@ -25,6 +25,15 @@ export default {
                 throw err
             }
         },
+        async logOut(context) {
+            try {
+                const res = await userService.logout()
+                context.commit({ type: 'setUser', user: res })
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        }
     },
     getters: {
         loggedUser(state) { return state.loggedUser }

@@ -22,6 +22,10 @@ async function login(username) {
     }
 }
 
+async function logout() {
+    return await storageService.save(LOGGED_USER_STORAGE_KEY, [])
+}
+
 async function signup(username) {
     const userToSave = {
         name: username,
@@ -35,5 +39,6 @@ async function signup(username) {
 
 export const userService = {
     getUser,
-    login
+    login,
+    logout
 }

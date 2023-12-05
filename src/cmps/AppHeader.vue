@@ -6,7 +6,8 @@
             <router-link to="/stats">Statistics</router-link>
         </nav>
         <div v-if="user" class="user-container">
-            Logged as {{ user.name }}.
+            <span>Logged as {{ user.name }}.</span>
+            <span @click="onLogout" class="logout">Logout</span>
         </div>
     </header>
 </template>
@@ -19,14 +20,20 @@ export default {
         return {
         }
     },
-    async created() {
-        // this.user = await userService.getUser()
-        this.$store.dispatch({ type: 'loadLoggedUser' })
+    methods: {
+        onLogout() {
+            this.$store.dispatch({ type: 'logOut' })
+            this.$router.push('/signup')
+        }
     },
     computed: {
         user() {
             return this.$store.getters.loggedUser
         },
+    },
+    async created() {
+        // this.user = await userService.getUser()
+        this.$store.dispatch({ type: 'loadLoggedUser' })
     },
 
 }
