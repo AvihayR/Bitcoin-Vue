@@ -1,9 +1,9 @@
 <template>
     <main class="contact-page">
-        <img v-if="!contacts.length" src="../assets/img/puff.svg" alt="" srcset="">
+        <img v-if="!contacts?.length" src="../assets/img/puff.svg" alt="Loading contacts..">
         <ContactFilter v-on:search="onFilterBy" />
         <router-link class="btn add" to="/contact/edit">Add a new contact</router-link>
-        <ContactList :contacts="contacts" />
+        <ContactList v-bind:contacts="contacts" />
     </main>
 </template>
 <script>
@@ -15,7 +15,6 @@ import { contactService } from '../services/contactService'
 export default {
     data() {
         return {
-            contacts: [],
         }
     },
     components: { ContactFilter, ContactList, ContactPreview },
@@ -36,8 +35,7 @@ export default {
         } catch (err) {
             console.log('Could not load contacts')
         }
-
-    }
+    },
 
 }
 </script>

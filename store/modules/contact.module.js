@@ -27,7 +27,7 @@ export default {
         async loadContacts(context) {
             try {
                 const contacts = await contactService.getContacts()
-                context.commit({ type: 'setContacts', contacts: contacts })
+                context.commit({ type: 'setContacts', contacts })
             } catch (err) {
                 console.log(err)
                 throw err
