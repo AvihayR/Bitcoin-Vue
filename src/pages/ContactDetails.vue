@@ -37,7 +37,7 @@
             </div>
         </div>
         <TransactionList v-if="transactions?.length" v-bind:transactions="transactions" />
-        <h2 v-else>No transactions was made to this user yet 😉</h2>
+        <h2 v-else class="no-transactions">No transactions was made to this user yet 😉</h2>
     </main>
 
     <Modal v-show="isModalVisible" @close="closeModal">
@@ -207,6 +207,33 @@ export default {
 
     .hidden {
         display: none;
+    }
+
+
+    @media (max-width: 550px) {
+        table {
+            margin-inline: 1rem;
+        }
+
+        .name-container {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .contact-details {
+            display: grid;
+        }
+
+        .more-details {
+            flex-direction: row-reverse;
+            gap: 1rem;
+            margin-block-start: 1rem;
+        }
+
+        h2.no-transactions {
+            font-size: 1rem;
+            font-weight: 700;
+        }
     }
 }
 </style>

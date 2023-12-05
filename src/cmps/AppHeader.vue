@@ -75,7 +75,7 @@ header {
 
     @media (max-width: 550px) {
         .nav-container {
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
     }
 }

@@ -50,6 +50,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-inline: 1rem;
+    border-radius: .4rem;
 }
 
 .modal-header {
@@ -128,5 +129,20 @@ export default {
 .modal-fade-enter-active,
 .modal-fade-leave-active {
     transition: opacity .5s ease;
+}
+
+@media (max-width: 550px) {
+    .modal {
+        .btn-close {
+            font-size: 2rem;
+            font-weight: 200;
+        }
+
+        .modal-body {
+            form {
+                flex-direction: column;
+            }
+        }
+    }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
     <footer>
         <small>
-            This App was created using VueJS - Want to see more? -
-            <a href="https://github.com/AvihayR" class="vue-color">Click me!</a>
+            This App was created using VueJS -
+            <a href="https://github.com/AvihayR" class="vue-color">Want to see more?</a>
         </small>
     </footer>
 </template>
