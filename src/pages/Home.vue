@@ -40,7 +40,6 @@ import { bitcoinService } from '../services/bitcoinService'
 export default {
   data() {
     return {
-      user: null,
       btcRate: 0
     }
   },
@@ -50,10 +49,16 @@ export default {
     getFormattedBalance() {
       return Intl.NumberFormat().format(this.user.balance)
     },
+    user() {
+      return this.$store.getters.loggedUser
+    }
   },
   async created() {
-    this.user = await userService.getUser()
     this.btcRate = await bitcoinService.getRate()
+  },
+  async mounted() {
+    const loggedUser = await userService.getUser()
+    if (!loggedUser || loggedUser.length === 0) this.$router.push('/signup')
   }
 }
 

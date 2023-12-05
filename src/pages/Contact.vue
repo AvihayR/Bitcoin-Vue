@@ -11,6 +11,7 @@ import ContactFilter from '../cmps/ContactFilter.vue'
 import ContactList from '../cmps/ContactList.vue'
 import ContactPreview from '../cmps/ContactPreview.vue'
 import { contactService } from '../services/contactService'
+import { userService } from '../services/userService'
 
 export default {
     data() {
@@ -36,7 +37,10 @@ export default {
             console.log('Could not load contacts')
         }
     },
-
+    async mounted() {
+        const loggedUser = await userService.getUser()
+        if (!loggedUser || loggedUser.length === 0) this.$router.push('/signup')
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -9,7 +9,6 @@ const user = {
 }
 
 async function getUser() {
-    console.log('get userrr')
     return await storageService.query(LOGGED_USER_STORAGE_KEY)
 }
 
