@@ -148,7 +148,6 @@ async function saveContact(contact) {
     if (contact._id) {
         savedContact = await storageService.put(STORAGE_KEY, contact)
     } else {
-        // Later, owner is set by the backend
         savedContact = await storageService.post(STORAGE_KEY, contact)
     }
     return savedContact

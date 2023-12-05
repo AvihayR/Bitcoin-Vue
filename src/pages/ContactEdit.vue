@@ -49,8 +49,8 @@ export default {
         },
         async onSaveContact() {
             try {
-                await contactService.saveContact(this.contact)
-                this.$router.push(`/contact/${this.contact._id}`)
+                const savedContact = await contactService.saveContact(this.contact)
+                this.$router.push(`/contact/${savedContact._id}`)
 
             } catch (err) {
                 console.log('Could not save contact at this time.')
