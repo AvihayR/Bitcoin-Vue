@@ -45,6 +45,10 @@ table {
         padding: .5rem;
     }
 
+    td {
+        font-size: 1.2rem;
+    }
+
     th {
         &:first-child {
             border-radius: .5rem 0 0 0;
@@ -85,7 +89,6 @@ table {
     tbody {
         tr:last-child {
             td {
-                font-size: 1.2rem;
 
                 &:first-child {
                     border-radius: 0 0 0 .5rem;
